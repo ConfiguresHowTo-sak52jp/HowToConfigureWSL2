@@ -27,6 +27,8 @@ SSHサーバーへリモート接続するための手続き一切が[このサ�
 §3でSSHの準備を整え、[ここ](https://github.com/ConfiguresHowTo-sak52jp/HowToConstructSamba.git)を参照してsambaを立ち上げ、さらに
 [ここ](https://github.com/CSharpExpAndLibs/LogServerExp.git)を参照してsyslogの設定が完了したとして、Windowsログオン時にWSL2を起動し、
 同時にsshd、smbd及びsyslogサービスを有効にするための手法について説明する。  
+***残念ながら、Windows Host-> WSL間のポートフォワーディングはTCPにしか対応していないことが分かった。SambaはUDPでの通信が必要なので、現状では
+WSLにSambaサーバーを立てることは出来ない。以下、Sambaに関する記述は無視すること。***
 ### 4-1. WSL(Ubuntu)側にスタートアップスクリプトを用意する
 このリポジトリにある`startup.sh`をUbuntuにインストールする。（ここでは、`/opt/bin`にインストールしたものとする。）§3でWSL上に立ち上げたSSHDへ接続する
 手法について説明した。ここではその知見を基に、WSL上にsshd、smbd及びrsyslogdの各デーモンを自動起動するためのスクリプトを作成した。
