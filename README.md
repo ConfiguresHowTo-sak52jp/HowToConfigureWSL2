@@ -46,7 +46,7 @@ WSLにSambaサーバーを立てることは出来ない。以下、Sambaに関�
 ようにスケジューリングしておけば良い。  
 タスクからはバッチを呼び出すか、または直接コマンドを実行することが出来るが、他に付随する処理に応じて選択すること。基本的には、次のコマンドが
 実行されるようにしておけばどのような形態でも構わない。  
-`c:\windows\system32\wsl.exe -d Ubuntu-18.04 -- /opt/bin/startup.sh`  
+`c:\windows\system32\wsl.exe -d Ubuntu-18.04 -u root -- /opt/bin/startup.sh`  
 ここにUbuntu-18.04はディストリビューション名である。環境に合わせて適宜変更すること。
 
 ## 5. WSLでpyenv管理下のpython scriptからsocketアクセスを可能にする
