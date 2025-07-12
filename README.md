@@ -1,6 +1,36 @@
 ## 1. WSL2のインストール
 [こちらのリンク](https://docs.microsoft.com/ja-jp/windows/wsl/install-win10#manual-installation-steps)を参照  
 インストールが完了したら、普通にUbuntuを更新する操作(emacsのインストールとか、build-essentialsのインストールとか)を行う。
+### 1-1. 日本語環境作成
+次の手順で行う。
+1. 日本語パッケージのインストール  
+`$ sudo apt -y install language-pack-ja`
+2. ロケールを日本語に設定  
+`$ sudo update-locale LANG=ja_JP.UTF8`
+3. 日本語マニュアルのインストール  
+`$ sudo apt -y install manpages-ja manpages-ja-dev`
+4. wslの再起動(CTRL-D, 再起動)  
+5. ロケールを確認
+```
+$ locale  
+LANG=ja_JP.UTF8
+LANGUAGE=
+LC_CTYPE="ja_JP.UTF8"
+LC_NUMERIC="ja_JP.UTF8"
+LC_TIME="ja_JP.UTF8"
+LC_COLLATE="ja_JP.UTF8"
+LC_MONETARY="ja_JP.UTF8"
+LC_MESSAGES="ja_JP.UTF8"
+LC_PAPER="ja_JP.UTF8"
+LC_NAME="ja_JP.UTF8"
+LC_ADDRESS="ja_JP.UTF8"
+LC_TELEPHONE="ja_JP.UTF8"
+LC_MEASUREMENT="ja_JP.UTF8"
+LC_IDENTIFICATION="ja_JP.UTF8"
+LC_ALL=
+```
+
+
 
 ## 2. Windows Defenderのファイアウォール設定を変更
 インストールしたWSL2でネットワーク系のアプリ（sshd,rsyslog,samba等）を動作させて他のホストからリモート接続したい時は、
