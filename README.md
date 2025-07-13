@@ -105,3 +105,28 @@ WSLにSambaサーバーを立てることは出来ない。以下、Sambaに関�
 WSL側からのネットワーク資源へのアクセスには、基本的にroot権限が必要みたい。なので、通常のアプリからsocketを使うような場合は、sudoでの実行が必須となる。
 ところが、sudoears設定はデフォルトでsecure_pathというものを定義しており、このパス以外のファイルに依存するようなソケットアプリケーションは
 色々と不具合に見舞われる。pyenv環境下でpythonを実行している場合が、まさにそれに当たる。$HOME/.pyenv/を起点とする幾つかのディレクトリがパスに含まれていることを前提とするからである。これを回避するには/etc/sudoearsを編集してsecure_pathをコメントアウトすること。その上で、pythonをsudo経由で実行すればsocketアクセスが可能になる。
+
+## 6. githubとの接続設定
+
+githubリポジトリとpush/pull等のやり取りをするためには、Access tokenを効率的かつ安全に取り扱う必要がある。ここではgpgを用いて
+tokenを暗号化し、比較的簡便に管理する方法について説明する。
+
+### 6-1. gpgのinstall
+
+ほぼ標準で同梱されているはずだが、もしなかったら `apt install gpg` でインストールする。
+
+### 6-2. gpg keyの作成
+
+gpgのuser-key pairがない場合は`gpg --gen-key`で作成する。この時username/mail-addrを設定するがメアドはkeyを取り出すときに必須となるので覚えておくこと。
+
+### 6-3. Access tokenの取得
+
+未取得であったら対象のリポジトリからAccess tokenを取得すること。方法に関しては[こちら](https://docs.github.com/ja/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens)を参照のこと。
+
+### 6-4. Credential helperの編集と登録
+
+`.gpg-credential-helper.sh`を編集して6-2でgpg-keyを作成した時のメアドを`GPG_RECIPIENT`に割り当てる。また、githubへアクセスした証跡を記録するファイル名を`CRED_FILE`に設定する。最後に`git config --global credential.helper <PathToScript>`を実行して上記スクリプトを登録する。スクリプトに実行permissionを付与するのを忘れないように！！
+
+
+
+
