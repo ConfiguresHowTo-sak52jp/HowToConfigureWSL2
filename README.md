@@ -127,6 +127,6 @@ gpgのuser-key pairがない場合は`gpg --gen-key`で作成する。この時u
 
 `.gpg-credential-helper.sh`を編集して6-2でgpg-keyを作成した時のメアドを`GPG_RECIPIENT`に割り当てる。また、githubへアクセスした証跡を記録するファイル名を`CRED_FILE`に設定する。最後に`git config --global credential.helper <PathToScript>`を実行して上記スクリプトを登録する。スクリプトに実行permissionを付与するのを忘れないように！！
 
+### 6-5. リポジトリへの初アクセス
 
-
-
+ここまで準備できたら、対象のリポジトリへ初アクセスしてみる。例えば、このリポジトリをcloneしたディレクトリで何らかの変更をしてcommitした後、`git push`を実行すればUsernameとPasswordを聞かれる。usernameにはgithubのアカウント名、PasswordにAccess tokenを指定すればその証跡が`CRED_FILE`に保存されるので、これ以降のアクセスではパスワードを入力せずにアクセス可能となる。
