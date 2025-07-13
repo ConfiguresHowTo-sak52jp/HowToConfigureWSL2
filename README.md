@@ -37,6 +37,10 @@ LC_IDENTIFICATION="ja_JP.UTF8"
 LC_ALL=
 ```
 
+### 1-2. pyenvインストール
+
+[こちら](https://github.com/pyenv/pyenv/)を参照。
+
 ## 2. Windows Defenderのファイアウォール設定を変更
 
 インストールしたWSL2でネットワーク系のアプリ（sshd,rsyslog,samba等）を動作させて他のホストからリモート接続したい時は、
